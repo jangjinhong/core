@@ -30,12 +30,14 @@ public class ApplicationContextExtendsFindTest {
     void findBeanBySubType() {
         RateDiscountPolicy bean = ac.getBean(RateDiscountPolicy.class);
         assertThat(bean).isInstanceOf(RateDiscountPolicy.class);
-    }    @DisplayName("부모 타입으로 조회 -> 자식이 둘 이상 있으면 중복 오류가 발생 -> 빈 이름 지정하면 된다")
+    }
+
+    @Test
+    @DisplayName("부모 타입으로 조회 -> 자식이 둘 이상 있으면 중복 오류가 발생 -> 빈 이름 지정하면 된다")
     void findBeanByParentTypeBeanName() {
         DiscountPolicy rateDiscountPolicy = ac.getBean("rateDiscountPolicy", DiscountPolicy.class);
         assertThat(rateDiscountPolicy).isInstanceOf(RateDiscountPolicy.class);
     }
-
 
 
     @Test
