@@ -3,7 +3,6 @@ package hello.core.beanfind;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
@@ -27,18 +26,17 @@ public class ApplicationContextExtendsFindTest {
     }
 
     @Test
-    @DisplayName("부모 타입으로 조회 -> 자식이 둘 이상 있으면 중복 오류가 발생 -> 빈 이름 지정하면 된다")
+    @DisplayName("특정 하위 타입으로 조회")
+    void findBeanBySubType() {
+        RateDiscountPolicy bean = ac.getBean(RateDiscountPolicy.class);
+        assertThat(bean).isInstanceOf(RateDiscountPolicy.class);
+    }    @DisplayName("부모 타입으로 조회 -> 자식이 둘 이상 있으면 중복 오류가 발생 -> 빈 이름 지정하면 된다")
     void findBeanByParentTypeBeanName() {
         DiscountPolicy rateDiscountPolicy = ac.getBean("rateDiscountPolicy", DiscountPolicy.class);
         assertThat(rateDiscountPolicy).isInstanceOf(RateDiscountPolicy.class);
     }
 
-    @Test
-    @DisplayName("특정 하위 타입으로 조회")
-    void findBeanBySubType() {
-        RateDiscountPolicy bean = ac.getBean(RateDiscountPolicy.class);
-        assertThat(bean).isInstanceOf(RateDiscountPolicy.class);
-    }
+
 
     @Test
     @DisplayName("부모 타입으로 모두 조회하기")
