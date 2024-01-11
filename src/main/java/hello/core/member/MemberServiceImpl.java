@@ -1,15 +1,19 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
-    }   //생성자를 통해 넣어줌 . MemberRepository memberRepository는 참조값
+    }
     /*
     * 여기서 포인트는, MemberServiceImpl에 MemoryMemberRepository에 대한 코드가 없다는 것이다.
-    * 오직 인터페이스만 존재한다
-    * 이것이 바로 추상화에만 의존하는 것으로 DIP를 지키는 것임
+    * 오직 인터페이스만 존재한다 (추상화에만 의존-> "DIP 준수")
     * 구체적인 내용을 모름 appconfig에서 생성해서 넣어줌
     * 이것은,
     * 생성자를 통해 객체가 인스턴스 생성된게 들어간다는 의미로 "생성자 주입"이라고 한다

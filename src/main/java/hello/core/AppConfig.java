@@ -24,7 +24,7 @@ public class AppConfig {
         return new MemoryMemberRepository();
     }
     @Bean
-    public OrderService orderService() { //얘는 매개변수가 2개가 필요함 정책과 저장소
+    public OrderService orderService() {
         System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
