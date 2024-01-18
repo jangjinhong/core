@@ -4,13 +4,20 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.Setter;
 import org.springframework.context.annotation.Scope;
+<<<<<<< HEAD
 import org.springframework.context.annotation.ScopedProxyMode;
+=======
+>>>>>>> origin/master
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Component
+<<<<<<< HEAD
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+=======
+@Scope(value = "request")
+>>>>>>> origin/master
 @Setter
 public class MyLogger {
     private String uuid;
